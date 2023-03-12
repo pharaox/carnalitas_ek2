@@ -1,0 +1,203 @@
+﻿namespace = carn_slavery_doctrine_seeding
+
+# 0001. Activate the game rule effect for default slavery religious doctrines
+carn_slavery_doctrine_seeding.0001 = {
+	type = empty
+	hidden = yes
+
+	immediate = {
+		if = {
+			limit = { has_game_rule = carn_slavery_default_religious_doctrine_full_historical }
+			every_religion_global = {
+				every_faith = {
+					# Righteous faith slavery
+					if = {
+						limit = {
+							NOR = {
+								has_doctrine = carn_doctrine_same_slavery_crime
+								has_doctrine = carn_doctrine_same_slavery_shunned
+								has_doctrine = carn_doctrine_same_slavery_accepted
+							}
+						}
+						if = {
+							limit = { religion = { is_in_family = rf_aedra } }
+							if = {
+								# Righteous faith slavery is shunned in Thousand Cults, Vinedusk Exemptions
+								# Worship of Molag Bal is shunned in these faiths
+								limit = {
+									OR = {
+										this = faith:niben_cult
+										this = faith:vineduskpact
+									}
+								}
+								add_doctrine = carn_doctrine_same_slavery_shunned
+							}
+							else = {
+								# Righteous faith slavery is crime in other Aedric religions
+								add_doctrine = carn_doctrine_same_slavery_crime
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_aurbis } }
+							if = {
+								# Righteous faith slavery is accepted in Necromantic religions
+								# Worship of Molag Bal is allowed in these religions
+								limit = {
+									religion = religion:necromantic_religion
+								}
+								add_doctrine = carn_doctrine_same_slavery_accepted
+							}
+							else_if = {
+								# Righteous faith slavery is crime in Khajiiti, Dwemeri, Stone, Vampiric religions
+								# Worship of Molag Bal is criminal in these religions
+								limit = {
+									OR = {
+										religion = religion:khajiiti_religion
+										religion = religion:dwemer_religion
+										religion = religion:stone_religion
+										religion = religion:vampiric_religion
+										this = faith:ternion_totems
+									}
+								}
+								add_doctrine = carn_doctrine_same_slavery_crime
+							}
+							else = {
+								# Righteous faith slavery is shunned in other Aurbic religions
+								add_doctrine = carn_doctrine_same_slavery_shunned
+							}
+						}
+						else = {
+							if = {
+								# Righteous faith slavery is accepted in Molag Bal, Reach, Azurite religions
+								# Worship of Molag Bal is accepted in these religions
+								limit = {
+									OR = {
+										religion = religion:molag_religion
+										religion = religion:reach_religion
+										religion = religion:azura_religion
+									}
+								}
+								add_doctrine = carn_doctrine_same_slavery_accepted
+							}
+							else_if = {
+								# Righteous faith slavery is crime in Velothi, Meridia religions
+								# Worship of Molag Bal is criminal in these religions
+								limit = {
+									OR = {
+										religion = religion:velothi_faiths
+										religion = religion:meridia_religion
+									}
+								}
+								add_doctrine = carn_doctrine_same_slavery_crime
+							}
+							else = {
+								# Righteous faith slavery is shunned in other Daedric religions
+								add_doctrine = carn_doctrine_same_slavery_shunned
+							}
+						}
+					}
+
+					# Hostile faith slavery
+					if = {
+						limit = {
+							NOR = {
+								has_doctrine = carn_doctrine_other_slavery_crime
+								has_doctrine = carn_doctrine_other_slavery_shunned
+								has_doctrine = carn_doctrine_other_slavery_accepted
+							}
+						}
+						if = {
+							limit = { religion = { is_in_family = rf_aedra } }
+							if = {
+								# Hostile faith slavery is accepted in Aldmeri, Trinimac, Yoku religions
+								# "Altmer were still said to have humanoid slaves during the seventh century of the Second Era"
+								# See https://elderscrolls.fandom.com/wiki/Altmer#Society
+								# Tinimac is the Daedric Prince Malacath, so similar attitude to slavery
+								# See https://elderscrolls.fandom.com/wiki/Trinimac
+								# "Slavery was widespread in Yokuda, and continues today in some places in Hammerfell."
+								# See https://www.reddit.com/r/teslore/comments/j58xuf/what_other_races_practiced_slavery/
+								limit = {
+									OR = {
+										religion = religion:aldmeri_religion
+										religion = religion:trinimac_religion
+										religion = religion:yokudan_religion
+									}
+								}
+								add_doctrine = carn_doctrine_other_slavery_accepted
+							}
+							else_if = {
+								# Hostile faith slavery is crime in Nedic-Nordic and Marukhati religions
+								# These religions descend from the one founded by Alessia in which slavery was outlawed
+								# See https://elderscrolls.fandom.com/wiki/Alessian_Empire#Alessia's_Reign
+								limit = {
+									OR = {
+										AND = {
+											religion = religion:nedic_nordic_religion
+											NOT = { this = faith:niben_cult }
+										}
+										religion = religion:marukhati_religion
+									}
+								}
+								add_doctrine = carn_doctrine_other_slavery_crime
+							}
+							else = {
+								# Hostile faith slavery is shunned in other Aedric religions
+								add_doctrine = carn_doctrine_other_slavery_shunned
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_aurbis } }
+							if = {
+								# Hostile faith slavery is accepted in Hist, Khajiiti, Dwemeri, Necromantic religions
+								# "However, under the effects of the Mad Hist, the Xit-Xaht tribe enslaved many of their own species to rebuild the Ruins of Mazzatun"
+								# "Argonian mothers would sometimes sell their own children into slavery"
+								# See https://elderscrolls.fandom.com/wiki/Slavery#Black_Marsh
+								# "Khajits, have it since ancient times and still have, sell their own kind to other races"
+								# See https://www.reddit.com/r/teslore/comments/j58xuf/what_other_races_practiced_slavery/
+								# "Those who agreed became the savage Falmer, soon becoming slaves to the Dwemer."
+								# See https://elderscrolls.fandom.com/wiki/Slavery#Skyrim
+								# Worship of Molag Bal is accepted in Necromantic religions
+								limit = {
+									OR = {
+										religion = religion:hist_religion
+										religion = religion:khajiiti_religion
+										religion = religion:dwemer_religion
+										religion = religion:necromantic_religion
+									}
+								}
+								add_doctrine = carn_doctrine_other_slavery_accepted
+							}
+							else = {
+								# Hostile faith slavery is shunned in other Aurbic religions
+								add_doctrine = carn_doctrine_other_slavery_shunned
+							}
+						}
+						else = {
+							# Hostile faith slavery is accepted in all Daedric religions
+							add_doctrine = carn_doctrine_other_slavery_accepted
+						}
+					}
+				}
+			}
+		}
+		else = {
+			every_religion_global = {
+				every_faith = {
+					carn_seed_slavery_doctrines_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# 0002. Add default slavery religious doctrines to newly created religions if they don't have them
+carn_slavery_doctrine_seeding.0002 = {
+	type = empty
+	hidden = yes
+
+	immediate = {
+		root.faith = {
+			carn_seed_slavery_doctrines_effect = yes
+		}
+	}
+}
