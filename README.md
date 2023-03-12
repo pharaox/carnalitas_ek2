@@ -1,8 +1,8 @@
 # Carnalitas EK2 Compatibility
 
-This is a [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) compatibility patch for [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253). It is intended to be used with the latest released versions of CK3 (1.8.1), EK2 (0.11.2a), and Carnalitas (1.7).
+This is a [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) compatibility patch for [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253). It reconciles changes to the character window and other game files made by these two mods. It also adds Elder Scrolls lore-based slavery doctrines, similar to the *Carnalitas Historical Slavery Doctrines* mod. It has been tested with CK3 1.8.1, EK2 0.11.2a, and Carnalitas 1.7.
 
-Note that since Carnalitas itself has issues with CK3 1.8.*, it is strongly recommended to use the [GUK Fix Carnalitas](https://www.loverslab.com/files/file/24787-guk_fix_carnzip/) patch as well.
+Note that since Carnalitas itself has issues with CK3 1.8.*, it is strongly recommended to use the [GUK Fix Carnalitas](https://www.loverslab.com/files/file/24787-guk_fix_carnzip/) compatibility patch as well.
 
 Load order:
 
@@ -21,7 +21,7 @@ Load order with [Carnalitas Slavery Reimagined](https://www.loverslab.com/topic/
 * Carnalitas Slavery Reimagined
 * CSR EK2 Compatibility
 
-## Changes and Fixes
+## Compatibility Fixes
 
 ### Character Window
 
