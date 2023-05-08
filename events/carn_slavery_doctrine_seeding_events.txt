@@ -22,11 +22,11 @@ carn_slavery_doctrine_seeding.0001 = {
 						if = {
 							limit = { religion = { is_in_family = rf_aedra } }
 							if = {
-								# Righteous faith slavery is shunned in Thousand Cults, Vinedusk Exemptions
-								# Worship of Molag Bal is shunned in these faiths
+								# Righteous faith slavery is shunned in Yoku religions
+								# Worship of Molag Bal is shunned in these religions
 								limit = {
 									OR = {
-										this = faith:niben_cult
+										religion = religion:yokudan_religion
 										this = faith:vineduskpact
 									}
 								}
@@ -48,15 +48,16 @@ carn_slavery_doctrine_seeding.0001 = {
 								add_doctrine = carn_doctrine_same_slavery_accepted
 							}
 							else_if = {
-								# Righteous faith slavery is crime in Khajiiti, Dwemeri, Stone, Vampiric religions
+								# Righteous faith slavery is crime in Khajiiti, Vampiric, Akaviri, Bretic religions
 								# Worship of Molag Bal is criminal in these religions
 								limit = {
 									OR = {
 										religion = religion:khajiiti_religion
-										religion = religion:dwemer_religion
-										religion = religion:stone_religion
 										religion = religion:vampiric_religion
+										religion = religion:akaviri_religion
+										religion = religion:wyrd_religion
 										this = faith:ternion_totems
+										this = faith:brethren
 									}
 								}
 								add_doctrine = carn_doctrine_same_slavery_crime
@@ -74,7 +75,11 @@ carn_slavery_doctrine_seeding.0001 = {
 									OR = {
 										religion = religion:molag_religion
 										religion = religion:reach_religion
-										religion = religion:azura_religion
+										AND = {
+											religion = religion:azura_religion
+											NOT = { this = faith:hidden_moon }
+										}
+										this = faith:ilpenada
 									}
 								}
 								add_doctrine = carn_doctrine_same_slavery_accepted
@@ -86,6 +91,7 @@ carn_slavery_doctrine_seeding.0001 = {
 									OR = {
 										religion = religion:velothi_faiths
 										religion = religion:meridia_religion
+										this = faith:hidden_moon
 									}
 								}
 								add_doctrine = carn_doctrine_same_slavery_crime
@@ -131,10 +137,7 @@ carn_slavery_doctrine_seeding.0001 = {
 								# See https://elderscrolls.fandom.com/wiki/Alessian_Empire#Alessia's_Reign
 								limit = {
 									OR = {
-										AND = {
-											religion = religion:nedic_nordic_religion
-											NOT = { this = faith:niben_cult }
-										}
+										religion = religion:nedic_nordic_religion
 										religion = religion:marukhati_religion
 									}
 								}
